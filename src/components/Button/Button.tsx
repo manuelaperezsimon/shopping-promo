@@ -1,6 +1,3 @@
-/* eslint-disable @typescript-eslint/no-empty-function */
-/* eslint-disable react/require-default-props */
-"use client";
 import React from "react";
 import { CgSpinner } from "react-icons/cg";
 
@@ -21,6 +18,7 @@ type ButtonProps = {
   textSm?: boolean;
   testId?: string;
   loading?: boolean;
+  className?: string;
 };
 
 export default function Button({
@@ -40,6 +38,7 @@ export default function Button({
   testId = "",
   loading = false,
   Icon = null,
+  className = "",
 }: ButtonProps): JSX.Element {
   return (
     <button
@@ -47,13 +46,14 @@ export default function Button({
       data-testid={testId}
       type="button"
       onClick={actionOnClick}
-      className={`flex justify-center items-center gap-2 px-5 py-2 cursor-pointer rounded-md text-${textColor} ${
+      className={`flex justify-center items-center gap-2 px-5 py-5 cursor-pointer rounded-lg text-${textColor} ${
         disabled || loading
           ? "cursor-not-allowed bg-slate-400 hover:bg-slate-400"
           : `${bgColor} hover:${hoverBgColor}`
       }
         ${border && `${border} ${borderColor}`}
         ${textSm && "text-sm"}
+        ${className} 
       `}
       disabled={disabled || loading}
     >
