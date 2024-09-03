@@ -53,7 +53,7 @@ const ProductCard = ({ product }: ProductProps): JSX.Element => {
           text="+"
           testId="shop-icon"
           textSm
-          className="absolute bottom-2 right-2 md:static md:bottom-auto md:right-auto"
+          className="absolute bottom-2 md:static md:bottom-auto md:right-auto"
         />
       </div>
 
