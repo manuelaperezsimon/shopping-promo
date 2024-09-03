@@ -10,7 +10,10 @@ interface ProductsProps {
 const Products = ({ products }: ProductsProps): JSX.Element => {
   return (
     <div className="p-4">
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 gap-4">
+      <div
+        data-testid="container"
+        className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 gap-4"
+      >
         {products.map((product) => (
           <ProductCard key={product.code} product={product} />
         ))}
