@@ -1,4 +1,4 @@
-import { CartItem } from "@/reducers/shoppingReducer";
+import { CartItem } from "../reducers/shoppingReducer";
 
 export const calculateTotals = (items: CartItem[]) => {
   const totalItems = items.reduce(
