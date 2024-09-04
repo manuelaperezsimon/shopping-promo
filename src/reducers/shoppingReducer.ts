@@ -1,5 +1,5 @@
 import { Product } from "@/interfaces/product";
-import { updateItemQuantity, calculateTotals } from "@/utils/utils";
+import { calculateTotals, updateItemQuantity } from "../utils/utils";
 
 export interface CartItem extends Product {
   quantity: number;
@@ -34,14 +34,17 @@ export const cartReducer = (
       );
 
       let updatedItems;
-
       if (existingItem) {
         updatedItems = updateItemQuantity(state.items, product.code, 1);
       } else {
         updatedItems = [...state.items, { ...product, quantity: 1 }];
       }
 
-      return { ...state, ...calculateTotals(updatedItems) };
+      return {
+        ...state,
+        items: updatedItems,
+        ...calculateTotals(updatedItems),
+      };
     }
 
     case "REMOVE_FROM_CART": {
@@ -53,14 +56,17 @@ export const cartReducer = (
       if (!itemToRemove) return state;
 
       let updatedItems;
-
       if (itemToRemove.quantity > 1) {
         updatedItems = updateItemQuantity(state.items, productCode, -1);
       } else {
         updatedItems = state.items.filter((item) => item.code !== productCode);
       }
 
-      return { ...state, ...calculateTotals(updatedItems) };
+      return {
+        ...state,
+        items: updatedItems,
+        ...calculateTotals(updatedItems),
+      };
     }
 
     case "CLEAR_CART":
