@@ -3,7 +3,7 @@ import React from "react";
 import Button from "../Button/Button";
 import { FiTrash2 } from "react-icons/fi";
 import { CartItem } from "../../reducers/shoppingReducer";
-import { useCartContext } from "@/hooks/useCartContext";
+import { useCartContext } from "../../hooks/useCartContext";
 
 interface ProductProps {
   product: CartItem;
