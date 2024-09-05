@@ -1,13 +1,18 @@
 import React from "react";
 import "@testing-library/jest-dom";
 import { render, screen } from "@testing-library/react";
-import { mockProduct } from "../../mocks/product";
+import { CartProvider } from "../../context/Shopping.context"; // Adjust import path as needed
 import ProductCard from "./Product";
+import { mockProduct } from "../../mocks/product";
+
+const renderWithCartProvider = (ui: React.ReactElement) => {
+  return render(<CartProvider>{ui}</CartProvider>);
+};
 
 describe("Given the ProductCard component", () => {
   describe("When called to render with all props", () => {
     test("Then it should render properly", async () => {
-      render(<ProductCard product={mockProduct} />);
+      renderWithCartProvider(<ProductCard product={mockProduct} />);
 
       const elements = [
         screen.getByText(mockProduct.supplier),
@@ -20,7 +25,7 @@ describe("Given the ProductCard component", () => {
     });
 
     test("Then it should render the correct number of stars", async () => {
-      render(<ProductCard product={mockProduct} />);
+      renderWithCartProvider(<ProductCard product={mockProduct} />);
 
       const fullStars = screen.getAllByTestId("full-star");
       const halfStars = screen.queryAllByTestId("half-star");
