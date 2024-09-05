@@ -1,7 +1,7 @@
 "use client";
 import React from "react";
 import CartProduct from "../CartProduct/CartProduct";
-import { useCartContext } from "@/hooks/useCartContext";
+import { useCartContext } from "../../hooks/useCartContext";
 
 const Cart = () => {
   const { cart } = useCartContext();
