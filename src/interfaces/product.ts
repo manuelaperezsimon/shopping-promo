@@ -65,9 +65,9 @@ interface ImageVariantFormats {
 }
 
 interface ImageFormats {
-  avif: ImageResolution;
-  jpg: ImageResolution;
-  webp: ImageResolution;
+  avif?: ImageResolution;
+  jpg?: ImageResolution;
+  webp?: ImageResolution;
 }
 
 interface ImageResolution {

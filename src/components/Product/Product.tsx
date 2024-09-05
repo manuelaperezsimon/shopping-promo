@@ -28,7 +28,7 @@ const ProductCard = ({ product }: ProductProps): JSX.Element => {
   } = product;
 
   const imageUrl =
-    images[0]?.variants["100"].formats.webp.resolutions["2x"].url;
+    images[0]?.variants["100"]?.formats?.webp?.resolutions["2x"].url;
 
   const maxStars = 5;
   const clampedReviewCount = Math.max(0, Math.min(reviewCount, 10));
