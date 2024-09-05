@@ -1,7 +1,7 @@
 import React from "react";
 import "@testing-library/jest-dom";
 import { render, screen } from "@testing-library/react";
-import { CartProvider } from "../../context/Shopping.context"; // Adjust import path as needed
+import { CartProvider } from "../../context/Shopping.context";
 import ProductCard from "./Product";
 import { mockProduct } from "../../mocks/product";
 
