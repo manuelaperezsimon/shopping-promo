@@ -14,7 +14,7 @@ const CartProduct = ({ product }: ProductProps): JSX.Element => {
   const { images, name, prices, quantity, stock } = product;
 
   const imageUrl =
-    images[0]?.variants["100"].formats.webp.resolutions["2x"].url;
+    images[0]?.variants["100"]?.formats?.webp?.resolutions["2x"].url;
 
   const handleRemove = (productCode: string) => {
     removeFromCart(productCode);
@@ -44,6 +44,7 @@ const CartProduct = ({ product }: ProductProps): JSX.Element => {
               <FiTrash2
                 onClick={() => handleRemove(product.code)}
                 className="w-5 h-5 p-0 text-slate-600 cursor-pointer"
+                data-testid="trash-icon"
               />
             </div>
           </div>
@@ -65,6 +66,7 @@ const CartProduct = ({ product }: ProductProps): JSX.Element => {
                 className="w-8 h-8 p-0"
                 bgColor="bg-white"
                 disabled={stock === 0 || quantity === stock}
+                data-testid="add-button"
               />
             </div>
 
