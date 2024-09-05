@@ -55,7 +55,9 @@ const Cart = () => {
             <p className="text-sm text-gray-600">
               Summe ({totalItems} {totalItems === 1 ? "Produkt" : "Produkte"})
             </p>
-            <p className="text-sm text-gray-600">${subtotal.toFixed(2)}</p>
+            <p className="text-sm text-gray-600" data-testid="subtotal">
+              ${subtotal.toFixed(2)}
+            </p>
           </div>
         </div>
       </div>
