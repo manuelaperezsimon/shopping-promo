@@ -13,6 +13,7 @@ interface ProductProps {
 const ProductCard = ({ product }: ProductProps): JSX.Element => {
   const { addToCart } = useCartContext();
   const [isFavorite, setIsFavorite] = useState(false);
+  const [imageError, setImageError] = useState(false);
 
   const {
     name,
@@ -58,9 +59,10 @@ const ProductCard = ({ product }: ProductProps): JSX.Element => {
 
       <div className="relative w-full">
         <img
-          src={imageUrl}
+          src={imageError ? "/img/no-img.webp" : imageUrl}
           alt={name}
           className="w-full h-64 object-contain rounded-t-lg"
+          onError={() => setImageError(true)}
         />
       </div>
 
