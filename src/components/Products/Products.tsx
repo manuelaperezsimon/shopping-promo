@@ -10,7 +10,7 @@ interface ProductsProps {
 
 const Products = ({ products }: ProductsProps): JSX.Element => {
   return (
-    <div className="flex flex-col md:flex-row">
+    <div className="flex flex-col md:flex-row min-h-screen">
       <div className="flex-1 p-4">
         <div
           data-testid="container"
@@ -22,7 +22,7 @@ const Products = ({ products }: ProductsProps): JSX.Element => {
         </div>
       </div>
 
-      <div className="hidden md:block md:w-96">
+      <div className="hidden md:flex md:flex-col md:w-96 mt-4">
         <Cart />
       </div>
 
