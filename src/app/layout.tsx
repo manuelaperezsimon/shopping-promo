@@ -1,4 +1,5 @@
 import React from "react";
+import Head from "next/head";
 import "./globals.css";
 
 export default function RootLayout({
@@ -8,12 +9,13 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <head>
-        <link
-          href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap"
-          rel="stylesheet"
+      <Head>
+        <title>Doc Morris</title>
+        <meta
+          name="description"
+          content="Tu Parafarmacia a Domicilio — Tus Productos de Cuidado al Mejor Precio. Descubre PromoFarma by DocMorris y ahorra. PromoFarma by DocMorris, tu Parafarmacia Online!"
         />
-      </head>
+      </Head>
       <body className="font-inter">{children}</body>
     </html>
   );
