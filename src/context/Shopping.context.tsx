@@ -1,12 +1,12 @@
 "use client";
-import { Product } from "../interfaces/product";
+import React, { createContext, useReducer, ReactNode, useEffect } from "react";
 import {
   CartState,
   cartInitialState,
   cartReducer,
 } from "../reducers/shoppingReducer";
-
-import React, { createContext, useReducer, ReactNode, useContext } from "react";
+import { Product } from "../interfaces/product";
+import useLocalStorage from "../hooks/useLocalStorage";
 
 interface CartContextProps {
   cart: CartState;
@@ -20,7 +20,12 @@ export const CartContext = createContext<CartContextProps | undefined>(
 );
 
 export const CartProvider = ({ children }: { children: ReactNode }) => {
-  const [state, dispatch] = useReducer(cartReducer, cartInitialState);
+  const [cart, setCart] = useLocalStorage<CartState>("cart", cartInitialState);
+  const [state, dispatch] = useReducer(cartReducer, cart);
+
+  useEffect(() => {
+    setCart(state);
+  }, [state, setCart]);
 
   const addToCart = (product: Product) => {
     if (product.available && product.stock > 0) {
@@ -32,18 +37,11 @@ export const CartProvider = ({ children }: { children: ReactNode }) => {
     dispatch({ type: "REMOVE_FROM_CART", payload: productCode });
   };
 
-  const clearCart = () => {
-    dispatch({ type: "CLEAR_CART" });
-  };
+  const clearCart = () => dispatch({ type: "CLEAR_CART" });
 
   return (
     <CartContext.Provider
-      value={{
-        cart: state,
-        addToCart,
-        removeFromCart,
-        clearCart,
-      }}
+      value={{ cart: state, addToCart, removeFromCart, clearCart }}
     >
       {children}
     </CartContext.Provider>

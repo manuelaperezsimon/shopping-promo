@@ -1,4 +1,5 @@
-import React from "react";
+"use client";
+import React, { useState, useEffect } from "react";
 import Head from "next/head";
 import { CartProvider } from "../context/Shopping.context";
 import products from "../data/products.json";
@@ -6,6 +7,12 @@ import { Product } from "../interfaces/product";
 import Products from "../components/Products/Products";
 
 export default function Home() {
+  const [isClient, setIsClient] = useState(false);
+
+  useEffect(() => {
+    setIsClient(true);
+  }, []);
+
   const productsTyped: Product[] = products as Product[];
 
   return (
@@ -18,7 +25,7 @@ export default function Home() {
         />
       </Head>
       <main className="flex min-h-screen flex-col items-center justify-between p-24">
-        <Products products={productsTyped} />
+        {isClient && <Products products={productsTyped} />}
       </main>
     </CartProvider>
   );
